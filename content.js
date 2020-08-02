@@ -30,7 +30,6 @@ function DOMtoString(document_root) {
 			wordList.forEach(wd => {
 				if (html.toLowerCase().includes(wd.toLowerCase())) {
 					console.log("BAD WORD DETECTED: ", wd);
-					console.log()
 					location.replace('https://i.pinimg.com/originals/c2/30/d4/c230d400121c4e177fb5b212e54f51f5.gif')
 				}
 			})

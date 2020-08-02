@@ -63,7 +63,7 @@ if (changeColor) {
       let newStatus = data.lock === 'true' ? 'UNLOCKED' : 'LOCKED';
       let proceed = true;
       if (lockDown === 'false') {
-        if (pwInput.value === '2758') {
+        if (pwInput.value === '3975') {
           proceed = true;
         } else {
           proceed = false;
