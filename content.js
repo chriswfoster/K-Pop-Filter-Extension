@@ -23,15 +23,23 @@ function DOMtoString(document_root) {
 		}
 		node = node.nextSibling;
 	}
-
-	let wordList = ['k pop', 'kpop', 'k-pop', 'blackpink', 'GOT7', 'NCT'] // YUP
+	let htmlWordList = html.split(' ')
+	let badWordCount = 0;
+	let wordList = ['k pop', 'kpop', 'k-pop', 'blackpink', 'GOT7'] // YUP
 	chrome.storage.sync.get('lock', function (data) {
 		if (data.lock === 'true') {
 			wordList.forEach(wd => {
-				if (html.toLowerCase().includes(wd.toLowerCase())) {
-					console.log("BAD WORD DETECTED: ", wd);
-					location.replace('https://i.pinimg.com/originals/c2/30/d4/c230d400121c4e177fb5b212e54f51f5.gif')
-				}
+				htmlWordList.forEach(htmlWord => {
+					if (htmlWord.toLowerCase().includes(wd.toLowerCase())) {
+						console.log("BAD WORD DETECTED: ", wd);
+						badWordCount += 1;
+						if (badWordCount > 7) {
+							location.replace('https://i.pinimg.com/originals/c2/30/d4/c230d400121c4e177fb5b212e54f51f5.gif')
+						}
+						console.log("Number of bad words: ", badWordCount)
+					}
+				})
+
 			})
 		}
 		console.log("here is lock when we land on the page: ", data.lock)
